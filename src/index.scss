@@ -1,0 +1,61 @@
+@font-face {
+  font-weight: 400;
+  font-family: "SF Compact Display";
+  font-style: normal;
+  src:
+    url("./fonts/SFCompactDisplay-Regular.woff2") format("woff2"),
+    url("./fonts/SFCompactDisplay-Regular.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 100;
+  font-family: "SF Compact Display";
+  font-style: normal;
+  src:
+    url("./fonts/SFCompactDisplay-Thin.woff2") format("woff2"),
+    url("./fonts/SFCompactDisplay-Thin.woff") format("woff");
+  font-display: swap;
+}
+
+:root {
+  --bg-blue-100: #bddddd;
+  --bg-blue-50: #dbeeee;
+  --bg-bisque-100: #e4d7b9;
+  --text-blue: #3d9090;
+  --text-light-blue: #51c8c8;
+  --text-black: #000;
+  --border-gray: #c4c4c4;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'SF Compact Display', sans-serif;
+  background-color: var(--bg-blue-50);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  outline: none;
+}
+
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

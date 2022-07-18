@@ -1,0 +1,52 @@
+.blog {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 30px;
+  overflow: hidden;
+
+  &__subtitle {
+    color: var(--text-blue);
+    font-size: 38px;
+    line-height: 46px;
+    letter-spacing: 1.196px;
+    text-align: center;
+  }
+
+  &__search {
+    margin-bottom: 30px;
+  }
+
+  &__shape {
+    position: absolute;
+    top: 10%;
+    right: 35%;
+    z-index: -1;
+    width: 400px;
+    height: 400px;
+    background-color: var(--bg-bisque-100);
+    border-radius: 50%;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .blog {
+    gap: 15px;
+
+    &__subtitle { font-size: 32px; }
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .blog {
+    &__subtitle { font-size: 28px; }
+  }
+}
+
+@media only screen and (max-width: 596px) {
+  .blog {
+    gap: 10px;
+
+    &__subtitle { font-size: 20px; }
+  }
+}

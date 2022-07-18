@@ -1,0 +1,31 @@
+.heading {
+  margin: 20px 0 0;
+  color: var(--text-blue);
+  font-weight: bold;
+  font-size: 48px;
+  letter-spacing: 1.196px;
+  text-align: center;
+  text-transform: uppercase;
+
+  > span {
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .heading {
+    font-size: 36px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .heading {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 596px) {
+  .heading {
+    font-size: 26px;
+  }
+}

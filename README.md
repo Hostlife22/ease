@@ -2,9 +2,7 @@
 
 ### [Site link](https://cozy-narwhal-c89fe9.netlify.app/)
 
-<kbd>
   <img align="right" alt="img" src="src/images/bg-git.png"  />
-</kbd>
 
 ### 🛠 The tech stack is:
 

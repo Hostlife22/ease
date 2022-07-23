@@ -1,22 +1,10 @@
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaGlobeEurope, FaMapMarkerAlt, FaPhone, FaUser } from 'react-icons/fa';
 import { Heading } from '../../components';
+import { textAnimation, transition } from '../../utils/animation';
 import './Contacts.scss';
 
 function Contacts() {
-  const transition = { type: 'tween', duration: 3 };
-  const textAnimation = {
-    hidden: {
-      x: -100,
-      opacity: 0,
-    },
-    visible: (custom: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1.5, delay: custom * 0.6 },
-    }),
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.currentTarget.reset();
@@ -37,7 +25,7 @@ function Contacts() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ ...transition, duration: 2 }}>
+        transition={transition}>
         <div className="contacts__info-item">
           <div className="contacts__icon">
             <FaPhone />
@@ -74,7 +62,7 @@ function Contacts() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ ...transition, duration: 2 }}>
+        transition={transition}>
         <iframe
           className="contacts__map"
           title="google map"

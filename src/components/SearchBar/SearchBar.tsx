@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { transition } from '../../utils/animation';
 import './SearchBar.scss';
 
 interface ISearchBarProps
@@ -17,16 +18,14 @@ function SearchBar({
   handleSearchKey,
   clearSearch,
   formSubmit,
-  ...props
 }: ISearchBarProps) {
-  const transition = { type: 'tween', duration: 3 };
   return (
     <motion.div
       className={cn(className, 'search')}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ ...transition, duration: 2 }}>
+      transition={transition}>
       <form onSubmit={formSubmit}>
         <input
           type="text"

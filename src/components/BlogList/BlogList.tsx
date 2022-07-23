@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { BlogItem } from '..';
+import { transition } from '../../utils/animation';
 import { IDataList } from '../../utils/data';
 import './BlogList.scss';
 
@@ -9,8 +10,7 @@ interface IBlogListProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement
   blogs: IDataList[];
 }
 
-function BlogList({ className, blogs, ...props }: IBlogListProps) {
-  const transition = { type: 'tween', duration: 3 };
+function BlogList({ className, blogs }: IBlogListProps) {
   return (
     <motion.div
       className={cn(className, 'blog-list')}
@@ -18,7 +18,7 @@ function BlogList({ className, blogs, ...props }: IBlogListProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ ...transition, duration: 2 }}>
+      transition={transition}>
       <AnimatePresence>
         {blogs.map((blog) => (
           <BlogItem blog={blog} key={blog.id} />

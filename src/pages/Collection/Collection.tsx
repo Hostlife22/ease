@@ -8,6 +8,7 @@ import { Theme } from '../../features/theme/theme.interface';
 import { selectTeme } from '../../features/theme/themeSlice';
 import { useAppSelector } from '../../hooks';
 import { sceneDarkImg, sceneLightImg } from '../../images';
+import { textAnimation, transition } from '../../utils/animation';
 import './Collection.scss';
 
 function Collection() {
@@ -21,19 +22,6 @@ function Collection() {
       imgRef.current.style.left = `${imgBgRef.current.clientWidth * 0.24}px`;
     }
   });
-
-  const transition = { type: 'tween', duration: 3 };
-  const textAnimation = {
-    hidden: {
-      x: -100,
-      opacity: 0,
-    },
-    visible: (custom: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1.5, delay: custom * 1 },
-    }),
-  };
 
   const imageLoaded = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const img = e.currentTarget as HTMLImageElement;
@@ -71,7 +59,7 @@ function Collection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ ...transition, duration: 2 }}>
+        transition={transition}>
         {theme === Theme.Light ? (
           <img src={sceneLightImg} alt="scena" className="collection__img" ref={imgBgRef} />
         ) : (

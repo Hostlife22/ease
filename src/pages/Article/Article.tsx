@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { EmptyList, Heading } from '../../components';
+import { textAnimation, transition } from '../../utils/animation';
 import { blogList, IDataList } from '../../utils/data';
 import './Article.scss';
 
@@ -20,19 +21,6 @@ function Article() {
       blogData && setBlog(blogData);
     }
   }, [id]);
-
-  const transition = { type: 'tween', duration: 3 };
-  const textAnimation = {
-    hidden: {
-      x: -100,
-      opacity: 0,
-    },
-    visible: (custom: number) => ({
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1.5, delay: custom * 0.8 },
-    }),
-  };
 
   return (
     <motion.div
@@ -75,7 +63,7 @@ function Article() {
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 100 }}
-              transition={{ ...transition, duration: 2 }}
+              transition={transition}
             />
             <motion.p className="article__description" custom={2} variants={textAnimation}>
               {blog.description}

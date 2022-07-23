@@ -5,15 +5,14 @@ import { CardList, Choice, ImgComponent } from '..';
 import { selectHorizontal } from '../../features/horizontal/horizontalSlice';
 import { selectLamp } from '../../features/lamps/lampsSlice';
 import { useAppSelector } from '../../hooks';
+import { transition } from '../../utils/animation';
 import './Card.scss';
 
 interface ICardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-function Card({ className, ...props }: ICardProps) {
+function Card({ className }: ICardProps) {
   const lamp = useAppSelector(selectLamp);
   const isHorizontal = useAppSelector(selectHorizontal);
-
-  const transition = { type: 'tween', duration: 3 };
 
   return (
     <motion.div
@@ -29,7 +28,7 @@ function Card({ className, ...props }: ICardProps) {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 0 }}
-            transition={{ ...transition, duration: 2 }}>
+            transition={transition}>
             <CardList lamp={lamp} />
           </motion.div>
           <ImgComponent src={lamp.image} alt="" className={cn('card__img')} />

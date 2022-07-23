@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BlogList, EmptyList, Heading, SearchBar } from '../../components';
+import { transition } from '../../utils/animation';
 import { blogList, IDataList } from '../../utils/data';
 import './Blog.scss';
 
@@ -26,8 +27,6 @@ function Blog() {
     setSearchKey('');
   };
 
-  const transition = { type: 'tween', duration: 3 };
-
   return (
     <div className="blog">
       <Heading span="our" text="blog" className="blog__heading" />
@@ -36,7 +35,7 @@ function Blog() {
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 100 }}
-        transition={{ ...transition, duration: 2 }}>
+        transition={transition}>
         Awesome place to make oneself <br /> productive and entertained through daily updates
       </motion.h3>
       <SearchBar

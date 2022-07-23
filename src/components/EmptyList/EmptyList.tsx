@@ -7,7 +7,7 @@ import './EmptyList.scss';
 interface IEmptyListProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-function EmptyList({ className, ...props }: IEmptyListProps) {
+function EmptyList({ className }: IEmptyListProps) {
   return (
     <motion.div
       className={cn(className, 'empty-list')}

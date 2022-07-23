@@ -8,7 +8,7 @@ export interface IImgComponentProps
   lamp: ILamp;
 }
 
-function CardList({ className, lamp, ...props }: IImgComponentProps) {
+function CardList({ lamp }: IImgComponentProps) {
   return (
     <motion.ul
       className="card__list"

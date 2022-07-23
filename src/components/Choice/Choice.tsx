@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
-import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from 'react';
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { Bars } from 'react-loader-spinner';
 import { selectHorizontal } from '../../features/horizontal/horizontalSlice';
 import { ILamp } from '../../features/lamps/lamps.interface';
@@ -8,19 +8,16 @@ import { selectLamp, selectLamps, selectLoading, setLamp } from '../../features/
 import { Theme } from '../../features/theme/theme.interface';
 import { setTheme } from '../../features/theme/themeSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
+import { transition } from '../../utils/animation';
 import './Choice.scss';
 
 interface IChoiceProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-function Choice({ className, ...props }: IChoiceProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isLarge = useMediaQuery('(max-width: 1440px)');
+function Choice({ className }: IChoiceProps) {
   const lamps = useAppSelector(selectLamps);
   const lamp = useAppSelector(selectLamp);
   const isloading = useAppSelector(selectLoading);
   const isHorizontal = useAppSelector(selectHorizontal);
-  const transition = { type: 'tween', duration: 3 };
 
   const dispatch = useAppDispatch();
 
@@ -32,25 +29,6 @@ function Choice({ className, ...props }: IChoiceProps) {
     }
   };
 
-  useEffect(() => {
-    const hideSwitcher = () => {
-      if (isOpen) {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener('scroll', hideSwitcher);
-
-    return () => {
-      window.addEventListener('scroll', hideSwitcher);
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isLarge) {
-      setIsOpen(false);
-    }
-  }, [isLarge]);
-
   return (
     <motion.div
       className={cn('choice', className, { choice_horizontal: !isHorizontal })}
@@ -58,7 +36,7 @@ function Choice({ className, ...props }: IChoiceProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ ...transition, duration: isHorizontal ? 2 : 0 }}>
-      <div className={cn('choice__container', { choice__container_open: isOpen })}>
+      <div className="choice__container">
         {isloading &&
           Array.from({ length: 3 }).map((_, index) => (
             <Bars

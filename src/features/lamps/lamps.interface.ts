@@ -3,10 +3,10 @@ export interface ILamp {
   height: number;
   id: number;
   image: string;
-  isDarkMode: false;
+  isDarkMode: boolean;
   material: string;
   name: string;
-  published_at: Date;
+  published_at: string;
   weight: number;
   width: number;
 }

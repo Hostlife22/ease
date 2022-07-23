@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { swap } from '../../utils';
+import { defaultLamps } from '../../utils/data';
 import { ILamp, ILampsState } from './lamps.interface';
 import { getAllLamps } from './lampsAsyncThunk';
 
@@ -31,6 +32,8 @@ export const lampsSlice = createSlice({
       })
       .addCase(getAllLamps.rejected, (state, action: PayloadAction<unknown>) => {
         state.error = String(action.payload);
+        state.lamps = defaultLamps;
+        state.selectedLamp = defaultLamps[0];
         state.loading = false;
       });
   },

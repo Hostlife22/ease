@@ -1,13 +1,34 @@
-# webpack-config
+# Ease
+
+### [Site link](https://cozy-narwhal-c89fe9.netlify.app/)
+
+<kbd>
+  <img align="right" alt="img" src="src/images/bg-git.png"  />
+</kbd>
+
+### 🛠 The tech stack is:
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux-toolkit](https://redux-toolkit.js.org/)
+- [React-router-dom](https://reactrouter.com/docs/en/v6/getting-started/overview)
+- [framer-motion](https://www.framer.com/motion/)
+- [sass](https://ru.wikipedia.org/wiki/Sass)
+- [Webpack](https://webpack.js.org/)
+- [eslint](https://eslint.org/)
+- [stylelint](https://stylelint.io/)
+- [prettier](https://prettier.io/)
+- [BEM methodology](https://en.bem.info/methodology/)
+
 
 Sensible webpack 5 boilerplate using Babel, PostCSS and Sass.
 
 ## Installation
 
-Clone this repo and npm install.
+Clone this repo and yarn install.
 
 ```bash
-npm i
+yarn
 ```
 
 ## Usage
@@ -15,7 +36,8 @@ npm i
 ### Development server
 
 ```bash
-npm start
+yarn watch
+yarn start
 ```
 
 You can view the development server at `localhost:8080`.
@@ -23,31 +45,24 @@ You can view the development server at `localhost:8080`.
 ### Production build
 
 ```bash
-npm run build
+yarn build
 ```
 
 ### Development build
 
 ```bash
-npm run build-dev
+yarn build-dev
 ```
-
-### Delete dist folder.
-
-```bash
-npm run clean
-```
-
 ### Check for errors and warnings.
 
 ```bash
-npm run lint
+yarn lint
 ```
 
 ### Fix errors and warnings
 
 ```bash
-npm run lint:fix
+yarn run lint:fix
 ```
 
 ## Features
@@ -70,6 +85,7 @@ npm run lint:fix
 
 - [`@babel/core`](https://www.npmjs.com/package/@babel/core) - Transpile ES6+ to backwards compatible JavaScript
 - [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset-react) - Preset that converts JSX to JavaScript
+- [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset-typescript) - Preset that converts TSX to JavaScript
 - [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) - Smart defaults for Babel
 
 ### Loaders
@@ -77,9 +93,9 @@ npm run lint:fix
 - [`babel-loader`](https://webpack.js.org/loaders/babel-loader/) - Transpile files with Babel and webpack
 - [`html-loader`](https://webpack.js.org/loaders/html-loader/) - Exports HTML as string. HTML is minimized when the compiler demands.
 - [`sass-loader`](https://webpack.js.org/loaders/sass-loader/) - Load SCSS and compile to CSS
-  - [`sass`](https://www.npmjs.com/package/sass) - Node Sass
+- [`sass`](https://www.npmjs.com/package/sass) - Node Sass
 - [`postcss-loader`](https://webpack.js.org/loaders/postcss-loader/) - Process CSS with PostCSS
-  - [`postcss-preset-env`](https://www.npmjs.com/package/postcss-preset-env) - Sensible defaults for PostCSS
+- [`postcss-preset-env`](https://www.npmjs.com/package/postcss-preset-env) - Sensible defaults for PostCSS
 - [`css-loader`](https://webpack.js.org/loaders/css-loader/) - Resolve CSS imports
 
 ### Plugins
@@ -91,7 +107,8 @@ npm run lint:fix
 
 - [`eslint`](https://github.com/eslint/eslint) - Enforce styleguide across application
 - [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) - Implement prettier rules
-  - - [`prettier`](https://github.com/prettier/prettier) - Dependency for `prettier-webpack-plugin` plugin
+- [`stylelint`](https://stylelint.io/) - Enforce styleguide across application
+- [`prettier`](https://github.com/prettier/prettier) - Dependency for `prettier-webpack-plugin` plugin
 
 ## Author
 

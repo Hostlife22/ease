@@ -32,6 +32,7 @@ yarn
 ## Usage
 
 ### Development server
+you need 2 terminals to run
 
 ```bash
 yarn watch

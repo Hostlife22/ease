@@ -1,10 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 1600px;
+  // gap: 8px;
+  // max-width: 1600px;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 1.875vmax;
+}
+
+.main {
+	    // height: calc(100vh - 2*1.875vmax - 4.667vh);
 }
 
 @media only screen and (max-width: 1599px) {

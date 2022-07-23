@@ -1,39 +1,52 @@
 .search {
-  width: fit-content;
+  width: 40vw;
   margin: 0 auto;
   background-color: #fff;
   border: 3px solid var(--text-blue);
-  border-radius: 10px;
+  border-radius: 0.63rem;
 
   & > form {
     display: flex;
     align-items: center;
-    padding: 5px;
 
     & > input {
-      padding-right: 10px;
+      flex: 1;
+      padding: 0.63rem;
+      padding-right: 0.63rem;
       color: var(--text-blue);
-      font-size: 20px;
+      font-size: 2vmin;
       background-color: transparent;
       border: none;
       outline: none;
     }
 
     & > span {
-      padding-right: 8px;
-      font-size: 20px;
+      padding-right: 0.8vmax;
+      font-size: 2vmin;
       cursor: pointer;
     }
 
     & > button {
-      padding: 8px;
+      padding: 0.63rem;
       color: #fff;
-      font-size: 18px;
+      font-size: 2vmin;
+      text-align: center;
       text-transform: uppercase;
       background-color: var(--text-blue);
       border: none;
-      border-radius: 5px;
       cursor: pointer;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .search {
+    border: 2px solid var(--text-blue);
+  }
+}
+
+@media (max-width: 768px) {
+  .search {
+    width: 60vw;
   }
 }

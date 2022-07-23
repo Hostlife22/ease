@@ -30,13 +30,19 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
   min-height: 100vh;
   font-family: 'SF Compact Display', sans-serif;
   background-color: var(--bg-blue-50);
+}
+
+html,
+body {
+  font-size: 2vmin;
+  line-height: 133.84%;
+  letter-spacing: 0.049em;
 }
 
 * {
@@ -58,4 +64,19 @@ ul {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  html,
+  body {
+    font-size: 14px;
+  }
 }

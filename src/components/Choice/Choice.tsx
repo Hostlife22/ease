@@ -1,14 +1,14 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from 'react';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Bars } from 'react-loader-spinner';
+import { selectHorizontal } from '../../features/horizontal/horizontalSlice';
 import { ILamp } from '../../features/lamps/lamps.interface';
 import { selectLamp, selectLamps, selectLoading, setLamp } from '../../features/lamps/lampsSlice';
 import { Theme } from '../../features/theme/theme.interface';
 import { setTheme } from '../../features/theme/themeSlice';
-import { useAppDispatch, useAppSelector, useMediaQuery } from '../../hooks';
-import { nightIcon, sunIcon } from '../../images';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import './Choice.scss';
 
 interface IChoiceProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -19,6 +19,7 @@ function Choice({ className, ...props }: IChoiceProps) {
   const lamps = useAppSelector(selectLamps);
   const lamp = useAppSelector(selectLamp);
   const isloading = useAppSelector(selectLoading);
+  const isHorizontal = useAppSelector(selectHorizontal);
   const transition = { type: 'tween', duration: 3 };
 
   const dispatch = useAppDispatch();
@@ -52,45 +53,40 @@ function Choice({ className, ...props }: IChoiceProps) {
 
   return (
     <motion.div
-      className={cn('choice', className)}
+      className={cn('choice', className, { choice_horizontal: !isHorizontal })}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ ...transition, duration: 2, delay: 1 }}>
+      transition={{ ...transition, duration: isHorizontal ? 2 : 0 }}>
       <div className={cn('choice__container', { choice__container_open: isOpen })}>
-        <div className="choice__lamps">
-          {isloading &&
-            Array.from({ length: 3 }).map((_, index) => (
-              <div className="choice__spinner" key={index}>
-                <Bars height="100" width="100" color="white" ariaLabel="loading" />
-              </div>
-            ))}
-          {lamps.map((l) => (
-            <div
-              className={cn('choice__lamp-item', {
-                'choice__lamp-item_selected': lamp?.id === l.id,
-              })}
-              key={l.id}
-              onClick={() => handleClick(l)}>
-              <span>
-                <img src={l.image} alt={l.name} title={l.name} />
-              </span>
-            </div>
+        {isloading &&
+          Array.from({ length: 3 }).map((_, index) => (
+            <Bars
+              height="90%"
+              width="90%"
+              color="white"
+              ariaLabel="loading"
+              wrapperClass="choice__loading"
+              key={index}
+            />
           ))}
-        </div>
-        <div className="choice__switcher">
-          <button className="choice__btn" onClick={() => dispatch(setTheme(Theme.Light))}>
-            <img src={sunIcon} alt="sun icon" />
-          </button>
-          <button
-            className={cn('choice__btn', { choice__btn_disable: !lamp?.isDarkMode })}
-            onClick={() => dispatch(setTheme(Theme.Dark))}>
-            <img src={nightIcon} alt="night icon" />
-          </button>
-        </div>
-        <div className="choice__transition" onClick={() => setIsOpen((prev) => !prev)}>
-          {isOpen ? <FaAngleRight /> : <FaAngleLeft />}
-        </div>
+        {lamps.map((l) => (
+          <div
+            className={cn('choice__lamp-item', {
+              'choice__lamp-item_selected': lamp?.id === l.id,
+            })}
+            key={l.id}
+            onClick={() => handleClick(l)}>
+            <img src={l.image} alt={l.name} title={l.name} />
+          </div>
+        ))}
+      </div>
+      <div className="choice__switcher">
+        <div className="choice__btn" onClick={() => dispatch(setTheme(Theme.Light))} />
+        <div
+          className={cn('choice__btn', { choice__btn_disable: !lamp?.isDarkMode })}
+          onClick={() => dispatch(setTheme(Theme.Dark))}
+        />
       </div>
     </motion.div>
   );

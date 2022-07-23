@@ -57,7 +57,7 @@ function Contacts() {
             <FaEnvelope />
           </div>
           <h4>Email</h4>
-          <p>Noom@gmail.com</p>
+          <p>ease@gmail.com</p>
         </div>
         <div className="contacts__info-item">
           <div className="contacts__icon">
@@ -69,21 +69,20 @@ function Contacts() {
           </p>
         </div>
       </motion.div>
-      <div className="contacts__row">
-        <motion.iframe
+      <motion.div
+        className="contacts__row"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ ...transition, duration: 2 }}>
+        <iframe
           className="contacts__map"
           title="google map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2409.4833685690337!2d19.01534220638995!3d50.259103689879915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4ef6221ac917f6c3!2sKatowice%20Dworzec%20PKP!5e0!3m2!1sru!2sde!4v1657895257494!5m2!1sru!2sde"
           allowFullScreen
           loading="lazy"
-          custom={2}
-          variants={textAnimation}
         />
-        <motion.form
-          className="contacts__form"
-          custom={2}
-          variants={{ ...textAnimation, hidden: { x: 100, opacity: 0 } }}
-          onSubmit={handleSubmit}>
+        <form className="contacts__form" onSubmit={handleSubmit}>
           <h3>Get in touch</h3>
           <div className="contacts__input-box">
             <FaUser />
@@ -98,8 +97,8 @@ function Contacts() {
             <input type="number" placeholder="number" />
           </div>
           <input type="submit" value="contact now" />
-        </motion.form>
-      </div>
+        </form>
+      </motion.div>
       <motion.div
         className="contacts__shape"
         initial={{ opacity: 0, right: '15%' }}

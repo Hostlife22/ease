@@ -16,7 +16,6 @@ export function swap<T>(arr: T[] = [], start: number = 0, end: number = 0): T[] 
 export const showElem = (elem: HTMLElement, duration: number = 0.05) => {
   let opacity = 0;
   elem.style.opacity = String(opacity);
-  elem.style.display = '';
 
   const animation = () => {
     opacity += duration;
@@ -39,11 +38,9 @@ export const hideElem = (elem: HTMLElement, duration: number = 0.05, cb?: () => 
 
     if (opacity > 0) {
       requestAnimationFrame(animation);
-    } else {
-      elem.style.display = 'none';
-      if (cb) {
-        cb();
-      }
+    }
+    if (cb) {
+      cb();
     }
   };
 

@@ -1,20 +1,26 @@
 import cn from 'classnames';
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { Card } from '../../components';
-import { ILamp } from '../../features/lamps/lamps.interface';
+import { useEffect, useRef } from 'react';
+import { Card, Choice, ImgComponent } from '../../components';
+import { selectHorizontal } from '../../features/horizontal/horizontalSlice';
 import { selectLamp } from '../../features/lamps/lampsSlice';
 import { Theme } from '../../features/theme/theme.interface';
 import { selectTeme } from '../../features/theme/themeSlice';
 import { useAppSelector } from '../../hooks';
-import { hideElem, showElem } from '../../utils';
+import { sceneDarkImg, sceneLightImg } from '../../images';
 import './Collection.scss';
 
 function Collection() {
-  const [lampPrev, setLampPrev] = useState<ILamp | null>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
   const theme = useAppSelector(selectTeme);
   const lamp = useAppSelector(selectLamp);
+  const isHorizontal = useAppSelector(selectHorizontal);
+  const imgBgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const resizeRoomDemoLamp = useRef(() => {
+    if (imgRef.current && imgBgRef.current) {
+      imgRef.current.style.left = `${imgBgRef.current.clientWidth * 0.24}px`;
+    }
+  });
 
   const transition = { type: 'tween', duration: 3 };
   const textAnimation = {
@@ -25,29 +31,27 @@ function Collection() {
     visible: (custom: number) => ({
       x: 0,
       opacity: 1,
-      transition: { duration: 1.3, delay: custom * 1 },
+      transition: { duration: 1.5, delay: custom * 1 },
     }),
   };
 
-  useEffect(() => {
-    if (lamp?.image && imgRef.current) {
-      hideElem(imgRef.current, 0.1);
-
-      setTimeout(() => {
-        setLampPrev(lamp);
-        imgRef.current && showElem(imgRef.current, 0.1);
-      }, 200);
+  const imageLoaded = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.currentTarget as HTMLImageElement;
+    if (imgBgRef.current) {
+      img.style.left = `${imgBgRef.current.clientWidth * 0.24}px`;
     }
-  }, [lamp?.image]);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeRoomDemoLamp.current);
+
+    return () => window.removeEventListener('resize', resizeRoomDemoLamp.current);
+  }, []);
 
   return (
     <div className="collection">
       <div className="collection__content">
-        <motion.div
-          className="collection__description"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ amount: 0.2 }}>
+        <motion.div className="collection__description" initial="hidden" whileInView="visible">
           <motion.p className="collection__text" custom={1} variants={textAnimation}>
             Collection of lighting is inspired by the geometric works of the great Suprematist
             artists Kissitzky and Kazimir Malevich.
@@ -63,21 +67,29 @@ function Collection() {
         <Card className="collection__card" />
       </div>
       <motion.div
-        className="collection__scene"
+        className={cn('collection__scene', { collection__scene_horizontal: !isHorizontal })}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ ...transition, duration: 2 }}>
-        <div className={cn('collection__scene-wrap', { dark: theme === Theme.Dark })}>
-          {lamp && (
-            <div
-              className={cn('collection__lamp', {
-                [`collection__lamp-${lampPrev?.id}`]: !!lamp,
-              })}>
-              <img src={lampPrev?.image || lamp.image} alt="lamp" ref={imgRef} />
-            </div>
-          )}
-        </div>
+        {theme === Theme.Light ? (
+          <img src={sceneLightImg} alt="scena" className="collection__img" ref={imgBgRef} />
+        ) : (
+          <img src={sceneDarkImg} alt="scena" className="collection__img" ref={imgBgRef} />
+        )}
+
+        {lamp && (
+          <div className="collection__lamp-container">
+            <ImgComponent
+              src={lamp.image}
+              alt="lamp"
+              className={cn('collection__lamp', `collection__lamp-${lamp.id}`)}
+              ref={imgRef}
+              handleLoad={imageLoaded}
+            />
+          </div>
+        )}
+        {!isHorizontal && <Choice className={cn({ card__choice_loading: !lamp })} />}
       </motion.div>
     </div>
   );

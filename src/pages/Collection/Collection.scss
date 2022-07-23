@@ -1,214 +1,106 @@
 .collection {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  height: calc(100vh - 2*1.875vmax - 4.3vh);
 
   &__content {
-    flex: 1;
+    flex: 1 1 44%;
   }
 
   &__description {
-    width: 100%;
-    max-width: 635px;
-    padding: 79px 0 83px 36px;
+    max-width: 90%;
+    margin: 3.4rem 0;
+    padding-left: 0.375vw;
   }
 
   &__text {
     color: var(--text-black);
     font-weight: 100;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 1.196px;
 
     & + & {
-      margin-top: 33px;
+      margin-top: 1.4rem;
     }
   }
 
   &__scene {
-    width: 100%;
-    max-width: 897px;
-    padding-right: 30px;
-    background: var(--bg-blue-50);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1 1 56%;
+    transition: background 0.3s ease-in-out;
 
-    &-wrap {
-      position: relative;
+    &_horizontal {
       display: block;
-      height: 1087px;
-      margin-top: -6px;
-      overflow: hidden;
-      background: var(--bg-blue-100);
-      background: url('../../images/scene-light.png') no-repeat;
-      background-size: cover;
-      border-radius: 18px;
-      box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
-      transition: background 0.3s ease-in-out;
-
-      &.dark {
-        background: url('../../images/scene-dark.png') no-repeat;
-        background-size: cover;
-      }
-
-      > img {
-        display: none;
-      }
+      height: fit-content;
     }
+  }
+
+  &__img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: left;
+    border-radius: 0.83rem;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+  }
+
+  &__lamp-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
   &__lamp {
     position: absolute;
-    top: 0;
-    left: 211px;
-    display: flex;
-    width: 216px;
-    height: 360px;
-
-    & > img {
-      opacity: 0;
-    }
+    max-width: 12vw;
+    height: auto;
+    max-height: 28%;
+    object-fit: contain;
 
     &-2 {
-      top: -120px;
-      left: 199px;
-      transform: scale(0.87);
-    }
-
-    &-4 {
-      left: 118px;
+      top: -8.4%;
     }
   }
 }
 
-@media only screen and (max-width: 1599px) {
+@media only screen and (max-width: 768px) {
   .collection {
+    flex-direction: column-reverse;
+    height: auto;
+
+    &__scene {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    &__lamp {
+      max-width: 12vw;
+
+      &-2 {
+        top: -9.4%;
+      }
+    }
+
     &__description {
       max-width: fit-content;
-      padding: 60px 30px 40px;
+      margin: 2rem 0;
+      text-align: center;
     }
 
-    &__scene {
-      z-index: 1;
-      max-width: 697px;
-
-      &-wrap {
-        height: 900px;
-      }
-    }
-
-    &__text {
-      & + & {
-        margin-top: 20px;
-      }
-    }
-
-    &__lamp {
-      top: -51px;
-      left: 144px;
-      transform: scale(0.74);
-
-      &-2 {
-        top: -134px;
-      }
+    &__list {
+      max-width: max-content;
     }
   }
 }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 520px) {
   .collection {
-    overflow-x: hidden;
-
-    &__text {
-      font-size: 22px;
-      line-height: 30px;
-    }
-  }
-}
-
-@media only screen and (max-width: 1280px) {
-  .collection {
-    flex-direction: column;
-    gap: 29px;
-
-    &__content {
-      display: flex;
-    }
-
     &__description {
-      padding: 60px 0 0 30px;
-    }
-
-    &__text {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-    &__lamp {
-      top: -70px;
-      left: 109px;
-      transform: scale(0.65);
-
-      &-2 {
-        top: -142px;
-      }
-    }
-
-    &__scene {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 0 0 0 30px;
-      border-radius: 18px;
-
-      &-wrap {
-        height: 680px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 820px) {
-  .collection {
-    &__content {
-      flex-direction: column-reverse;
-    }
-
-    &__description {
-      margin-top: 70px;
-      padding: 60px  30px 0;
-    }
-
-    &__scene {
-      padding: 0 30px;
-    }
-
-    &__lamp {
-      top: -70px;
-      left: 102px;
-      transform: scale(0.65);
-
-      &-2 {
-        top: -149px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 596px) {
-  .collection {
-    &__lamp {
-      top: -107px;
-      left: 24px;
-      transform: scale(0.4);
-
-      &-2 {
-        top: -161px;
-      }
-    }
-
-    &__scene {
-      max-width: 418px;
-
-      &-wrap {
-        height: 450px;
-      }
+      text-align: justify;
     }
   }
 }

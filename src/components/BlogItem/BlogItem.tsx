@@ -17,6 +17,7 @@ function BlogItem({
   const navigation = useNavigate();
   return (
     <motion.div
+      title={title}
       layout
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
@@ -25,8 +26,10 @@ function BlogItem({
       onClick={() => navigation(`/blog/${id}`)}>
       <img src={cover} alt={cover} className="blog-list__cover" />
       <p className="blog-list__chip">{category}</p>
-      <h3>{title}</h3>
-      <p className="blog-list__description">{description}</p>
+      <h3>{title.length > 40 ? `${title.substring(0, 40)}...` : title}</h3>
+      <p className="blog-list__description">
+        {description.length > 100 ? `${description.substring(0, 100)}...` : description}
+      </p>
       <footer>
         <div className="blog-list__author">
           <img src={authorAvatar} alt="avatar" />

@@ -19,7 +19,7 @@
 - [BEM methodology](https://en.bem.info/methodology/)
 
 
-Sensible webpack 5 boilerplate using Babel, PostCSS and Sass.
+###  Sensible webpack 5 boilerplate using Babel, PostCSS and Sass.
 
 ## Installation
 
